@@ -1,6 +1,3 @@
-function ClearInput() {
-  document.getElementById("m").value = null;
-}
 (() => {
   const socket = io();
 
