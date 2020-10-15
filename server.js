@@ -5,12 +5,24 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
 
-io.on('connection',(socket) => {
-    console.log('a user connected');
+app.get('/', (req,res) => {
+  res.sendFile(__dirname + '/public/index.html');
 });
 
+io.on('connection',socket => {
+    console.log('a user connected');
+    socket.on('chat message', (msg) => {
+      console.log("message: " + msg);
+    });
+    socket.on('disconnect',() => {
+      console.log("a user disconected");
+    });
+});
+
+
+
 http.listen(3000, () => {
-  console.log('listening on *:3000');
+  console.log('listening on http://localhost:3000');
 });
 
 app.use(express.static('public'));
