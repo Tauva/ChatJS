@@ -12,7 +12,7 @@
     e.preventDefault();
     socket.emit('chat message', $('#m').val());
     $('#m').val('');
-  })
+  });
 
 
   // Créer un nouvel élément 'li'
