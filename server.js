@@ -16,10 +16,10 @@ io.on('connection',socket => {
   console.log("Username: " + socket.username);
 
   socket.on('chat message', msg  => {
-  io.emit('chat message', socket.username + ": " + msg);
+  socket.broadcast.emit('chat message', socket.username + ": " + msg);
   console.log(socket.username + " send message: " + msg);
   });
-  
+
   socket.on('disconnect',() => {
   console.log(socket.username + " disconected");
   });

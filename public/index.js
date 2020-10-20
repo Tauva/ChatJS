@@ -10,6 +10,11 @@
 
   $('form').submit(function(e) {
     e.preventDefault();
+    let elem = document.createElement('li');
+    elem.innerHTML = $('#m').val();
+    elem.setAttribute("id","Sent");
+    $('#messages').append(elem);
+
     socket.emit('chat message', $('#m').val());
     $('#m').val('');
   });
@@ -20,6 +25,7 @@
 
   socket.on('chat message', function(msg) {
     let elem = document.createElement('li');
+    elem.setAttribute("id","Reply");
     elem.innerHTML = msg;
     $('#messages').append(elem);
   });
