@@ -10,10 +10,12 @@
 
   $('form').submit(function(e) {
     e.preventDefault();
-    let elem = document.createElement('li');
-    elem.innerHTML = $('#m').val();
-    elem.setAttribute("class","message");
-    $('#messages').append(elem);
+    let li = document.createElement('li'),
+      span = document.createElement('span');
+    li.append(span);
+    span.innerHTML = $('#m').val();
+    li.setAttribute("class","message");
+    $('#messages').append(li);
 
     socket.emit('chat message', $('#m').val());
     $('#m').val('');
@@ -24,10 +26,12 @@
   // Ajoute le nouvel élément à la liste de messages
 
   socket.on('chat message', function(msg) {
-    let elem = document.createElement('li');
-    elem.setAttribute("class","reply");
-    elem.innerHTML = msg;
-    $('#messages').append(elem);
+    let li = document.createElement('li'),
+      span = document.createElement('span');
+    li.append(span);
+    span.innerHTML = msg;
+    li.setAttribute("class","reply");
+    $('#messages').append(li);
   });
 
 
