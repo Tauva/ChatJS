@@ -1,7 +1,8 @@
+const username = require("./username");
+
 (() => {
   const socket = io();
 
-  
   // Détecte les évènements d'envoie de messages:
   // - appuie sur le bouton "envoyer"
   // - appuie sur la touche entrée du clavier
@@ -14,6 +15,7 @@
     $('#m').val('');
   });
 
+  let Username = socket.on('add users',username => { return socket.username});
 
   // Créer un nouvel élément 'li'
   // Met le contenu du message 'msg' dans le nouvel élément

@@ -1,36 +1,25 @@
 const { rejects } = require('assert')
 const fs = require('fs');
 const { resolve } = require('path');
-let arrayList;
 
-function readFile(path) {
-    let promise = new Promise((resolve, rejects) => {
-        fs.readFile(path,'utf8',(err,text) => {
-            if (err)
-                rejects(err);
-            else {
-                resolve(text);
-            }
-        });
-    });
-    return (promise);
-}
+module.exports = {
 
-async function createList() {
-    let regex = /\r\n/gi;
+bar : async function createList() {
 
-    let list = await readFile("./util/pseudos.txt");
-    arrayList = list.split(regex);
-}
+    return fs.readFileSync('./public/util/pseudos.txt',"utf8").split(' '); 
+   
+},
 
-function giveUsername() {
-    let rdm = Math.floor(Math.random() * arrayList.lenght);
-
-    if (arrayList.lenght == 0)
+fez : function giveUsername() {
+    let arrayList = this.bar();
+    let rdm = Math.floor(Math.random() * arrayList.length);
+    if (arrayList.length == 0)
         return ('Anonimous');
-    return (arrayList.splice(rdm, 1));
-}
+    console.log(arrayList);
+    return (arrayList[rdm]);
+},
 
-function disconnectUsername(username) {
+fir :  function disconnectUsername(username) {
     arrayList.push(username);
 }
+};
