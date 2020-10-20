@@ -16,7 +16,8 @@ io.on('connection',socket => {
   console.log("Username: " + socket.username);
 
   socket.on('chat message', msg  => {
-  socket.broadcast.emit('chat message', socket.username + ": " + msg);
+    msg.username = socket.username;
+  socket.broadcast.emit('chat message', msg);
   console.log(socket.username + " send message: " + msg);
   });
 
