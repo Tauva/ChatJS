@@ -12,21 +12,17 @@ app.get('/', (req,res) => {
 
 
 io.on('connection',socket => {
-  console.log("User " + User.fez() + " Connected");
-    socket.on('add user ', (username) => {
-      socket.username = User.fez();
-    });
+  socket.username = User.fez();
+  console.log("Username: " + socket.username);
 
-    socket.on('chat message', (msg) => {
-      io.emit('username',socket.username);
-      io.emit('chat message', msg);
-      console.log(socket.username + " send message: " + msg);
-    });
+  socket.on('chat message', msg  => {
+  io.emit('chat message', socket.username + ": " + msg);
+  console.log(socket.username + " send message: " + msg);
+  });
   
-    socket.on('disconnect',() => {
-      
-      console.log("a user disconected");
-    });
+  socket.on('disconnect',() => {
+  console.log(socket.username + " disconected");
+  });
 });
 
 

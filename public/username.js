@@ -4,7 +4,7 @@ const { resolve } = require('path');
 
 module.exports = {
 
-bar : async function createList() {
+bar : function createList() {
 
     return fs.readFileSync('./public/util/pseudos.txt',"utf8").split(' '); 
    
@@ -15,8 +15,7 @@ fez : function giveUsername() {
     let rdm = Math.floor(Math.random() * arrayList.length);
     if (arrayList.length == 0)
         return ('Anonimous');
-    console.log(arrayList);
-    return (arrayList[rdm]);
+    return (arrayList.splice(rdm,1));
 },
 
 fir :  function disconnectUsername(username) {
