@@ -21,7 +21,13 @@ div button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 1
     background: #eee;
 }
 
-#messages li span.username {
+.sent  {
+
+}
+
+/*#messages li span */
+
+.username {
 	display: inline-block;
 	padding: 6px 10px;
 	margin-right: 5px;

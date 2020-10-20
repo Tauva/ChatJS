@@ -13,8 +13,19 @@
     let msg = {
       text : $('#m').val()
     };
-    $('#messages').append($('<li>').html('<span class="username">' + 'Moi' + '</span> ' + msg.text));
-    socket.emit('chat message', msg);
+    let elem = document.createElement('li');
+    let span = document.createElement('span');
+
+    span.setAttribute("class","username");
+    span.append("moi");
+    elem.innerHTML = msg.text;
+    span.setAttribute("class", "sent");
+
+    span.append(elem);
+    $('#messages').append(span);
+
+//    $('#messages').append($('<li>').html('<span class="username">' + 'Moi' + '</span> ' + msg.text));
+    socket.emit('chat message', msg.text);
     $('#m').val('');
   });
 
@@ -23,6 +34,7 @@
   // Ajoute le nouvel élément à la liste de messages
 
   socket.on('chat message', function(msg) {
+
     $('#messages').append($('<li>').html('<span class="username">' + msg.username + '</span> ' + msg.text));
   });
 
